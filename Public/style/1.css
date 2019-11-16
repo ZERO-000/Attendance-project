@@ -1,0 +1,49 @@
+body{
+	padding: 0px;
+	margin: 0px;
+	overflow-y: hidden;
+	background-color: #c7dff6;
+}
+*{
+	text-align: center;
+}
+.center1{
+
+	margin-top:300px;
+ 	margin-left:10%;
+	width: 900px;
+	height: 1200px;
+}
+.main button{
+	float: left;
+	background-color: orange;
+	width: 200px;
+	color: white;
+	border: none;
+	box-shadow:  -1px -2px -2px 0 #615959;
+	border-radius: 3px;
+	font-size:45px;
+
+}
+.main2 button{
+	float: left;
+	margin-left: 150px;
+	background-color: red;
+	width: 200px;
+	color: white;
+	border: none;
+	box-shadow:  -1px -2px -2px 0 #615959;
+	border-radius: 3px;
+	font-size:45px;
+}
+
+.main3 button{
+	float: right;
+	background-color: #000000;
+	width: 200px;
+	color: white;
+	border: none;
+	box-shadow:  -1px -2px -2px 0 #615959;
+	border-radius: 3px;
+	font-size:45px;
+}

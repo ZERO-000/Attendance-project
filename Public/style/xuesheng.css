@@ -1,0 +1,78 @@
+body{
+	font-family: "Lucida Grande","lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	background: url(../images/1.jpg) no-repeat;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background-size: 100%;
+}
+p,h3,form,button{
+	border:0;
+	margin: 0;
+	padding: 0px;
+}
+.form1{
+	background:#F6F6F6;
+	position: relative;
+	margin-left: 25%;
+	margin-top: 25%;
+	width: 600px;
+	height: 400px;
+	text-align: center;
+	border:1px solid #F6F6F6;
+	opacity: 0.8;
+		border-radius: 15px;
+}
+.form1 h3{
+	color: #000000;
+	font-size: 40px;
+	text-align: center;
+}
+.number{
+	color: #000000;
+	margin: 20px;
+	font-size: 30px;
+}
+.button{
+	background:#132546;
+	color: #FFFFFF;
+	width: 100px;
+	height: 60px;
+	margin: 10px;
+		border-radius: 15px;
+}
+.animation1{
+	width: 200px;
+	height: 200px;
+	background:#132564;
+	animation-name:animation;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
+.animation2{
+	float: right;
+	width: 200px;
+	height: 200px;
+	background:#541277;
+	animation-name:animation;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
+.input{
+	height: 35px;
+	width: 250px;
+		border-radius: 5px;
+}
+/*@keyframes animation{
+	0%{
+		opacity: 1;
+		margin-top: 0px;
+		border-radius: 0px;
+	}
+	100%{
+		opacity: 0;
+		margin-top:-800px;
+		border-radius: 50px;
+	}
+}*/

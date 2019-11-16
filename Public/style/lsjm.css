@@ -1,0 +1,29 @@
+
+td{
+	width: 120px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+}
+.td1{
+	border-right: 20px solid #545145;
+}
+td{
+	background: pink;
+	font-size: 18px;
+
+}
+a{
+	text-decoration:none
+}
+.div1{
+	margin: 15px;
+	width: 200px;
+	height: 80px;
+	border: 1px solid;
+	text-align: center;
+	line-height: 50px;
+	margin-left: 42.5%;
+	background: purple;
+	color: #FFFFFF;
+}
