@@ -26,10 +26,14 @@ class IndexController extends Controller
 	public function orderList(){
       $User=M("t_order");
 	      /*两个表的关联查询得到等级值*/
-	      $userinfo = $User->table('t_order,t_commodity,t_user')->where('t_order.cname = t_commod
-	      	ity.cname and t_order.uname = t_user.uname ')->field('t_order_id,t_order.orderid,t_order.cname')->select();
-	      $this->assign("userInfo",$userinfo);
-	      $this->display("order-list");
+		  $where = array();
+		 $where['meiyepin_feedback.member_id'] = "1";
+		 $Model = M('feedback');
+		   $a = $Model
+		   ->join('meiyepin_member ON meiyepin_feedback.member_id = meiyepin_member.member_id')
+		   ->where($where)
+		   ->select();
+		 var_dump($a);exit;
 		}
 
 
