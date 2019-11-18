@@ -41,7 +41,7 @@
 		// }
 		// 	setInterval("timer()",1000);
 
-			var btn = document.getElementsByTagName('button')[0];
+		var btn = document.getElementsByTagName('button')[0];
 		btn.onclick = function(){
 			$.ajax({
 				type:"POST",
@@ -51,6 +51,7 @@
 				success:function(data){
 					console.log(data);
 					// console.log(hours);
+					document.getElementById("nowTime").innerHTML = $hours
 
 				}
 

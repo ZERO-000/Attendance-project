@@ -38,9 +38,9 @@ class IndexController extends Controller
 		// exit;
 		$result = array(
 			$User ,
-			$hours,
-			$minutes,
-			$seconds
+			"hours" => $hours,
+			"minutes" => $minutes,
+			"seconds" => $seconds
 		 );
         $this->ajaxReturn($result,"json");
         // $this->ajaxReturn($,"json");
