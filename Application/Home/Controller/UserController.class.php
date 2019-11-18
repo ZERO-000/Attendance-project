@@ -23,12 +23,13 @@ class UserController extends Controller
 		if ($student) {
 			$id=$student['id'];
 			session('student.name',$name);
+			session('student.number',$number);
 			header("Location:".U("index/xsqd"));
 		} else {
 			$this->error('用户名或密码错！');
         }
-		
-		
+
+
 	}
 	public function do_login_teacher(){
 		$name = I('post.name');
@@ -41,7 +42,7 @@ class UserController extends Controller
 			header("Location:".U("index/lsjm"));
 		} else {
 			$this->error('用户名或密码错！');
-        }	
+        }
 	}
 	public function do_login_assistant(){
 		$name = I('post.name');
