@@ -41,16 +41,18 @@
 		// }
 		// 	setInterval("timer()",1000);
 
-			var btn = document.getElementsByTagName('button')[0];
+		var btn = document.getElementsByTagName('button')[0];
 		btn.onclick = function(){
 			$.ajax({
 				type:"POST",
 				url:"<?php echo U('Judge');?>",
 				data:{},
 				dataType:'json',
-				success:function(data){
-					console.log(data);
+				success:function(e){
+					console.log(e);
 					// console.log(hours);
+					var hours = e.hours;
+					document.getElementById("nowTime").innerHTML = hours;
 
 				}
 

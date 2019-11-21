@@ -37,7 +37,7 @@ class IndexController extends Controller
 		// var_dump($result);
 		// exit;
 		$result = array(
-			$User ,
+			"data" => $User ,
 			"hours" => $hours,
 			"minutes" => $minutes,
 			"seconds" => $seconds
