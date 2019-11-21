@@ -47,16 +47,5 @@ class IndexController extends Controller
 	}
 
 
-	public function orderList(){
-		 $where = array();
-		 $where['meiyepin_feedback.member_id'] = "1";
-		 $Model = M('feedback');
-		   $a = $Model
-		   ->join('meiyepin_member ON meiyepin_feedback.member_id = meiyepin_member.member_id')
-		   ->where($where)
-		   ->select();
-		 var_dump($a);exit;
-		}
-
 
 }
