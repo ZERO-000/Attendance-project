@@ -48,10 +48,10 @@
 				url:"<?php echo U('Judge');?>",
 				data:{},
 				dataType:'json',
-				success:function(e){
-					console.log(e);
+				success:function(data){
+					console.log(data);
 					// console.log(hours);
-					var hours = e.hours;
+					var hours = data.hours;
 					document.getElementById("nowTime").innerHTML = hours;
 
 				}
