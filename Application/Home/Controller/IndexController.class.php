@@ -21,6 +21,7 @@ class IndexController extends Controller
 		// $hours = data(h);
 		// $time = time();
 		// date("y-m-d",$time);
+		$day = date('D',time());
 		$year = date("Y",time());
 		$hours =  date("H",time());
 		$minutes = date("i",time());
@@ -47,6 +48,13 @@ class IndexController extends Controller
 				   )
 				 )
 		->select();
+
+
+		$currentTime=time('2019-12-2');//当前时间
+		$cnt=$currentTime-strtotime("2019-8-26");//与已知时间的差值
+		$days = floor($cnt/(3600*24));//算出天数
+		$week = $days/7 + 1;
+		// $this->ajaxReturn($days);
 		// var_dump($result);
 		// exit;
 		// $arr = array(
@@ -55,50 +63,45 @@ class IndexController extends Controller
 		$result = array(
 			'year' => $year,
 			"data" => $User,
+			'day' => $day,
 			// 'arr' => $arr,
 			"hours" => $hours,
 			"minutes" => $minutes,
 			"seconds" => $seconds,
+			'week' => $week
 		 );
-		 $arr = array(
-			 31,28,31,30,31,30,31,30,31,30,31,30
-		 )
-		 $sum = 0;
-		 $setTime = 237;
-		 if{$year/*现在年份 */ - $year /*开学年份*/ == 0}{
-			if($year/4 == 0){
-				var $arr[1] = 29;
-					for(var $i = 0 ; $i< month -1 ; $i++){
-					$sum +=$arr[i];
-				}
-				$sum=$sum+$day - $setTime;
-			}else{
-				for(var $i = 0 ; $i< month -1 ; $i++){
-					$sum +=$arr[i];
-				}
-				$sum=$sum+$day - $setTime;
-			}
-		}else{
-			if($year/4 == 0){
-				var $arr[1] = 29;
-					for(var $i = 0 ; $i< month -1 ; $i++){
-					$sum +=$arr[i];
-				}
-				$sum= 366 - $setTime +$sum +$day;
-			}else{
-				for(var $i = 0 ; $i< month -1 ; $i++){
-					$sum +=$arr[i];
-				}
-				$sum= 365 - $setTime +$sum +$day;
-			}
 
-		}
-		$sum=$sum+$day - $setTime;
-		$week = $sum/7 +1;
+
         $this->ajaxReturn($result,"json");
         // $this->ajaxReturn($,"json");
 	}
 
 
+
+
+
+function DiffDate( $data1 = "2011-01-06", $data2 = "2015-06-16") {
+		  if (strtotime($date1) > strtotime($date2)) {
+		    $ymd = $date2;
+		    $date2 = $date1;
+		    $date1 = $ymd;
+		  }
+		  list($y1, $m1, $d1) = explode('-', $date1);
+		  list($y2, $m2, $d2) = explode('-', $date2);
+		  $y = $m = $d = $_m = 0;
+		  $math = ($y2 - $y1) * 12 + $m2 - $m1; //相差总月数
+		  $y = round($math / 12);  //相差年数
+		  $m = intval($math % 12);  //相差月数
+		  $mm = $math; //相差总月数
+		  $d = (mktime(0, 0, 0, $m2, $d2, $y2) - mktime(0, 0, 0, $m2, $d1, $y2)) / 86400;
+		  if ($d < 0) {
+		    $m -= 1;
+		    $d += date('j', mktime(0, 0, 0, $m2, 0, $y2));
+		  }
+		  $m < 0 && $y -= 1;
+ 	  		// DiffDate("2011-01-06","2015-06-16");
+		  return $aa = array($y, $m, $d,$mm,$bbb);
+		  $this->ajaxReturn($aa,"json");
+		}
 
 }
