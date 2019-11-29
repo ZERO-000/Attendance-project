@@ -22,7 +22,6 @@
 	<p><?php echo ($_SESSION['student']['number']); ?></p>
 	<p id="nowTime"></p>
 	<button class="qd" type="submit">签到</button>
-	<button type="submit" name="button">aaaaaaa</button>
 	<script src="/kqxt/Public/js/xsqd.js"></script>
 	<script>
 
@@ -53,25 +52,13 @@
 					console.log(data);
 					// console.log(hours);
 					var hours = data.hours;
-					document.getElementById("nowTime").innerHTML = hours;
+					// document.getElementById("nowTime").innerHTML = ;
 
 				}
 
 			})
 		}
 
-		var aaa = document.getElementsByName('button');
-		aaa.onclick = function (){
-			$.ajax({
-				type:'POST',
-				url:"<?php echo U('DiffDate');?>",
-				data:{},
-				dataType:'json',
-				success:function(data){
-					conosle.log(data);
-				}
-			})
-		}
 	</script>
 </body>
 </html>
