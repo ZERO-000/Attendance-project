@@ -1,20 +1,27 @@
-
+body{
+		text-align: center;
+	margin: 0px;
+	padding: 0px;
+}
+table{
+	margin-left: 20%;
+}
 td{
 	width: 120px;
 	height: 30px;
 	text-align: center;
-	line-height: 30px;
+	line-height: 5px;
 }
 .td1{
-	border-right: 20px solid #545145;
+	border-right: 40px solid #93d4c8;
 }
 td{
-	background: pink;
-	font-size: 18px;
-
+	background: #d6f1f3;
+	font-size: 16px;
 }
 a{
-	text-decoration:none
+ color: #5777d1;
+	text-decoration:none;
 }
 .div1{
 	margin: 15px;
@@ -24,6 +31,6 @@ a{
 	text-align: center;
 	line-height: 50px;
 	margin-left: 42.5%;
-	background: purple;
+	background: #2ed842;
 	color: #FFFFFF;
 }
