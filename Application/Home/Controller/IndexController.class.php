@@ -29,10 +29,8 @@ class IndexController extends Controller
 		$ymd = date('Y-m-d');
 		$currentTime = time();//当前时间
 		$cnt = $currentTime - strtotime("2019-8-26");//与已知时间的差值
-		$days = floor($cnt/(3600*24));//算出天数
-		$week = floor($days/7) + 1;
-		$classStrattime = $currentTime - strtotime('$ymd 08:10:00');
-		$ddddd = floor($classStrattime/(3600*24));
+		$days = ceil($cnt/(3600*24));//算出天数
+		$week = ceil($days/7);
     $User = $model
 			// ->join('student')
 			// ->join('classtime')
@@ -79,7 +77,6 @@ class IndexController extends Controller
 			$currentTime,
 			$ymd,
 			'clll' => $classStrattime,
-			$ddddd
 		 );
 
 
