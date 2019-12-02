@@ -22,11 +22,11 @@
 		<h3>老师登陆</h3>
 		<div class="number">
 			<label for="username">账号</label>
-			<input type="text" name="name" id="uname" class="input">
+			<input type="text" name="t_name" id="uname" class="input">
 		</div>
 		<div class="number">
 			<label for="textpwd">密码</label>
-			<input type="password" name="number" class="input">
+			<input type="password" name="t_number" class="input">
 		</div>
 		<input class="button" type="submit" name="submit" value="提交">
 		<input class="button" type="reset" name="reset" value="重置" />

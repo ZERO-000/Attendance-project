@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2019-10-25 03:31:48
+-- Generation Time: 2019-12-02 00:57:16
 -- 服务器版本： 5.7.14
 -- PHP Version: 5.6.25
 
@@ -30,16 +30,17 @@ USE `kqxt`;
 
 CREATE TABLE `assistant` (
   `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `number` int(11) NOT NULL
+  `a-name` varchar(20) NOT NULL,
+  `a-number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='辅导员';
 
 --
 -- 转存表中的数据 `assistant`
 --
 
-INSERT INTO `assistant` (`id`, `name`, `number`) VALUES
-(1, '吴辅导', 20171);
+INSERT INTO `assistant` (`id`, `a-name`, `a-number`) VALUES
+(1, '吴辅导', 20171),
+(2, '谢辅导', 20172);
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,8 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -79,7 +81,8 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`id`, `name`, `number`, `banzhang`, `major_id`) VALUES
-(1, '17网络3班', 47, '黄先生', 1);
+(1, '17网络3班', 47, '黄先生', 1),
+(2, '17英语教育2班', 42, '郭同学', 2);
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,8 @@ CREATE TABLE `classtime` (
 --
 
 INSERT INTO `classtime` (`id`, `lesson`, `weeklyTimes`, `weeks`, `course_jihua_id`) VALUES
-(1, 4, 2, '周一', 1);
+(1, 4, 2, '周一', 1),
+(2, 4, 2, '周三', 2);
 
 -- --------------------------------------------------------
 
@@ -119,7 +123,8 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`id`, `name`, `number`) VALUES
-(1, '英语教育', '25f21');
+(1, '英语教育', '25f21'),
+(2, '汽车维修', '14n15');
 
 -- --------------------------------------------------------
 
@@ -160,7 +165,8 @@ CREATE TABLE `mac` (
 --
 
 INSERT INTO `mac` (`id`, `mac`, `row`, `col`) VALUES
-(1, '00-23-24-C3-EC-8C', 6, 1);
+(1, '00-23-24-C3-EC-8C', 6, 1),
+(2, '00-23-24-C3-EB-AF', 5, 4);
 
 -- --------------------------------------------------------
 
@@ -179,7 +185,8 @@ CREATE TABLE `major` (
 --
 
 INSERT INTO `major` (`id`, `name`, `jieshao`) VALUES
-(1, '计算机网络', '计算机网络技术');
+(1, '计算机', '计算机网络技术'),
+(2, '英语', '英语教育');
 
 -- --------------------------------------------------------
 
@@ -189,7 +196,7 @@ INSERT INTO `major` (`id`, `name`, `jieshao`) VALUES
 
 CREATE TABLE `major_jihua` (
   `id` int(11) NOT NULL,
-  `grade` int(11) NOT NULL,
+  `grade` varchar(20) NOT NULL,
   `major_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='专业计划表';
 
@@ -198,7 +205,8 @@ CREATE TABLE `major_jihua` (
 --
 
 INSERT INTO `major_jihua` (`id`, `grade`, `major_id`) VALUES
-(1, 2017, 1);
+(1, '2017-1', 1),
+(2, '2017-2', 1);
 
 -- --------------------------------------------------------
 
@@ -208,8 +216,8 @@ INSERT INTO `major_jihua` (`id`, `grade`, `major_id`) VALUES
 
 CREATE TABLE `student` (
   `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `number` int(11) NOT NULL,
+  `s-name` varchar(20) NOT NULL,
+  `s-number` int(11) NOT NULL,
   `class_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生';
 
@@ -217,8 +225,9 @@ CREATE TABLE `student` (
 -- 转存表中的数据 `student`
 --
 
-INSERT INTO `student` (`id`, `name`, `number`, `class_id`) VALUES
-(1, '曾同学', 2017001, 1);
+INSERT INTO `student` (`id`, `s-name`, `s-number`, `class_id`) VALUES
+(1, '曾同学', 2017001, 1),
+(2, '孙同学', 2017002, 2);
 
 -- --------------------------------------------------------
 
@@ -228,16 +237,17 @@ INSERT INTO `student` (`id`, `name`, `number`, `class_id`) VALUES
 
 CREATE TABLE `teacher` (
   `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `number` int(11) NOT NULL
+  `t-name` varchar(20) NOT NULL,
+  `t-number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='老师表';
 
 --
 -- 转存表中的数据 `teacher`
 --
 
-INSERT INTO `teacher` (`id`, `name`, `number`) VALUES
-(1, '张老师', 201701);
+INSERT INTO `teacher` (`id`, `t-name`, `t-number`) VALUES
+(1, '张老师', 201701),
+(2, '梁老师', 201702);
 
 --
 -- Indexes for dumped tables
@@ -325,27 +335,27 @@ ALTER TABLE `teacher`
 -- 使用表AUTO_INCREMENT `assistant`
 --
 ALTER TABLE `assistant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `classtime`
 --
 ALTER TABLE `classtime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `course_jihua`
 --
@@ -355,27 +365,27 @@ ALTER TABLE `course_jihua`
 -- 使用表AUTO_INCREMENT `mac`
 --
 ALTER TABLE `mac`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `major`
 --
 ALTER TABLE `major`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `major_jihua`
 --
 ALTER TABLE `major_jihua`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 限制导出的表
 --

@@ -18,12 +18,13 @@
 		</style>
 	</head>
 <body>
-	<p>{$Think.session.student.name}</p>
-	<p>{$Think.session.student.number}</p>
+	<p>{$Think.session.student.sname}</p>
+	<p>{$Think.session.student.snumber}</p>
 	<p id="nowTime"></p>
 	<button class="qd" type="submit">签到</button>
 	<script src="__PUBLIC__/js/xsqd.js"></script>
 	<script>
+
 
 		//
 		// function timer(){
@@ -45,13 +46,14 @@
 		btn.onclick = function(){
 			$.ajax({
 				type:"POST",
-				url:"{:U('Judge')}",
+				url:"Judge",
 				data:{},
 				dataType:'json',
 				success:function(data){
 					console.log(data);
 					// console.log(hours);
 					var hours = data.hours;
+					var minutes = data.minutes;
 					// document.getElementById("nowTime").innerHTML = ;
 
 				}

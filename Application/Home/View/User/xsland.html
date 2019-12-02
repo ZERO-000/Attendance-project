@@ -11,11 +11,11 @@
 		<h3>学生登陆</h3>
 		<div class="number">
 			<label for="username">名字</label>
-			<input type="text" name="name" class="input">
+			<input type="text" name="s_name" class="input">
 		</div>
 		<div class="number">
 			<label for="textpwd">学号</label>
-			<input type="password" name="number" class="input">
+			<input type="password" name="s_number" class="input">
 		</div>
 		<input class="button" type="submit" name="submit" value="提交">
 		<input class="button" type="reset" name="reset" value="重置" />

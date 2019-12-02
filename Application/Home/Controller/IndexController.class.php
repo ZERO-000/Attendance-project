@@ -26,23 +26,33 @@ class IndexController extends Controller
 		$hours =  date("H",time());
 		$minutes = date("i",time());
 		$seconds = date("s",time());
-		$currentTime=time();//当前时间
-		$cnt=$currentTime-strtotime("2019-8-26");//与已知时间的差值
+		$ymd = date('Y-m-d');
+		$currentTime = time();//当前时间
+		$cnt = $currentTime - strtotime("2019-8-26");//与已知时间的差值
 		$days = floor($cnt/(3600*24));//算出天数
 		$week = floor($days/7) + 1;
+		$classStrattime = $currentTime - strtotime('$ymd 08:10:00');
+		$ddddd = floor($classStrattime/(3600*24));
     $User = $model
-			->join('student')
-			->join('classtime')
-			->join("course_jihua")
-			->join('course')
-			->join('major_jihua')
-			->join('major')
-			->join('class')
-			// ->join('course_jihua ON classtime.course_jihua_id = course_jihua.id')
-			// ->join('course ON course_jihua.course_id = course.id')
-		  // ->join('major_jihua ON course_jihua.major_jihua_id = major_jihua.id')
-		  // ->join('major ON major_jihua.major_id = major.id')
-		  // ->join('major ON class.major_id = major.id')
+			// ->join('student')
+			// ->join('classtime')
+			// ->join("course_jihua")
+			// ->join('course')
+			// ->join('major_jihua')
+			// ->join('major')
+			// ->join('class')
+			->join('student ON attendance.student_id = student.id')
+			->join('class ON student.class_id = class.id')
+			->join('classtime ON attendance.classtime_id = classtime.id')
+			->join('course_jihua ON classtime.course_jihua_id = course_jihua.id')
+			->join('course ON course_jihua.course_id = course.id')
+			->join('major_jihua ON course_jihua.major_jihua_id = major_jihua.id')
+			->join('major ON major_jihua.major_id = major.id')
+			// ->join('major ON class.major_id = major.id')
+			->where(
+					['classtime.weeks' => $day],
+					['classtime.weeklyTime' => $week]
+				)
 		  // ->join('class ON student.class_id = class.id')
 			  // ->where(
 			  //  array(
@@ -58,22 +68,18 @@ class IndexController extends Controller
 				//    )
 				//  )
 		->select();
-
-		// $this->ajaxReturn($days);
-		// var_dump($result);
-		// exit;
-		// $arr = array(
-		// 	31,28,31,30,31,30,31,30,31,30,31,30
-		// )
 		$result = array(
 			'year' => $year,
 			"data" => $User,
 			'day' => $day,
-			// 'arr' => $arr,
 			"hours" => $hours,
 			"minutes" => $minutes,
 			"seconds" => $seconds,
-			'week' => $week
+			'week' => $week,
+			$currentTime,
+			$ymd,
+			'clll' => $classStrattime,
+			$ddddd
 		 );
 
 

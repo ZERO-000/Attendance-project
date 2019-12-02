@@ -18,8 +18,8 @@
 		</style>
 	</head>
 <body>
-	<p><?php echo ($_SESSION['student']['name']); ?></p>
-	<p><?php echo ($_SESSION['student']['number']); ?></p>
+	<p><?php echo ($_SESSION['student']['sname']); ?></p>
+	<p><?php echo ($_SESSION['student']['snumber']); ?></p>
 	<p id="nowTime"></p>
 	<button class="qd" type="submit">签到</button>
 	<script src="/kqxt/Public/js/xsqd.js"></script>
@@ -45,13 +45,14 @@
 		btn.onclick = function(){
 			$.ajax({
 				type:"POST",
-				url:"<?php echo U('Judge');?>",
+				url:"Judge",
 				data:{},
 				dataType:'json',
 				success:function(data){
 					console.log(data);
 					// console.log(hours);
 					var hours = data.hours;
+					var minutes = data.minutes;
 					// document.getElementById("nowTime").innerHTML = ;
 
 				}
