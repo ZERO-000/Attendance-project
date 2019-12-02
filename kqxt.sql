@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2019-12-02 00:57:16
+-- Generation Time: 2019-12-02 03:47:35
 -- 服务器版本： 5.7.14
 -- PHP Version: 5.6.25
 
@@ -30,15 +30,15 @@ USE `kqxt`;
 
 CREATE TABLE `assistant` (
   `id` int(11) NOT NULL,
-  `a-name` varchar(20) NOT NULL,
-  `a-number` int(11) NOT NULL
+  `a_name` varchar(20) NOT NULL,
+  `a_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='辅导员';
 
 --
 -- 转存表中的数据 `assistant`
 --
 
-INSERT INTO `assistant` (`id`, `a-name`, `a-number`) VALUES
+INSERT INTO `assistant` (`id`, `a_name`, `a_number`) VALUES
 (1, '吴辅导', 20171),
 (2, '谢辅导', 20172);
 
@@ -51,16 +51,17 @@ INSERT INTO `assistant` (`id`, `a-name`, `a-number`) VALUES
 CREATE TABLE `attendance` (
   `id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `classtime_id` int(11) NOT NULL
+  `classtime_id` int(11) NOT NULL,
+  `kaoqin` int(11) NOT NULL DEFAULT '0' COMMENT '0未签到，1已签到。2迟到'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考勤表';
 
 --
 -- 转存表中的数据 `attendance`
 --
 
-INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`) VALUES
-(1, 1, 1),
-(2, 2, 2);
+INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`, `kaoqin`) VALUES
+(1, 1, 1, 0),
+(2, 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -70,8 +71,8 @@ INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`) VALUES
 
 CREATE TABLE `class` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `number` int(11) NOT NULL,
+  `cl_name` varchar(30) NOT NULL,
+  `cl_number` int(11) NOT NULL,
   `banzhang` varchar(30) NOT NULL,
   `major_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='班级表';
@@ -80,7 +81,7 @@ CREATE TABLE `class` (
 -- 转存表中的数据 `class`
 --
 
-INSERT INTO `class` (`id`, `name`, `number`, `banzhang`, `major_id`) VALUES
+INSERT INTO `class` (`id`, `cl_name`, `cl_number`, `banzhang`, `major_id`) VALUES
 (1, '17网络3班', 47, '黄先生', 1),
 (2, '17英语教育2班', 42, '郭同学', 2);
 
@@ -103,7 +104,7 @@ CREATE TABLE `classtime` (
 --
 
 INSERT INTO `classtime` (`id`, `lesson`, `weeklyTimes`, `weeks`, `course_jihua_id`) VALUES
-(1, 4, 2, '周一', 1),
+(1, 4, 15, 'Mon', 1),
 (2, 4, 2, '周三', 2);
 
 -- --------------------------------------------------------
@@ -114,15 +115,15 @@ INSERT INTO `classtime` (`id`, `lesson`, `weeklyTimes`, `weeks`, `course_jihua_i
 
 CREATE TABLE `course` (
   `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `number` varchar(20) NOT NULL
+  `co_name` varchar(20) NOT NULL,
+  `co_number` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课程表';
 
 --
 -- 转存表中的数据 `course`
 --
 
-INSERT INTO `course` (`id`, `name`, `number`) VALUES
+INSERT INTO `course` (`id`, `co_name`, `co_number`) VALUES
 (1, '英语教育', '25f21'),
 (2, '汽车维修', '14n15');
 
@@ -176,7 +177,7 @@ INSERT INTO `mac` (`id`, `mac`, `row`, `col`) VALUES
 
 CREATE TABLE `major` (
   `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
+  `m_name` varchar(20) NOT NULL,
   `jieshao` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='专业表';
 
@@ -184,9 +185,9 @@ CREATE TABLE `major` (
 -- 转存表中的数据 `major`
 --
 
-INSERT INTO `major` (`id`, `name`, `jieshao`) VALUES
-(1, '计算机', '计算机网络技术'),
-(2, '英语', '英语教育');
+INSERT INTO `major` (`id`, `m_name`, `jieshao`) VALUES
+(1, '计算机网络技术', '计算机网络技术'),
+(2, '英语教育', '英语教育');
 
 -- --------------------------------------------------------
 
@@ -216,8 +217,8 @@ INSERT INTO `major_jihua` (`id`, `grade`, `major_id`) VALUES
 
 CREATE TABLE `student` (
   `id` int(11) NOT NULL,
-  `s-name` varchar(20) NOT NULL,
-  `s-number` int(11) NOT NULL,
+  `s_name` varchar(20) NOT NULL,
+  `s_number` int(11) NOT NULL,
   `class_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生';
 
@@ -225,7 +226,7 @@ CREATE TABLE `student` (
 -- 转存表中的数据 `student`
 --
 
-INSERT INTO `student` (`id`, `s-name`, `s-number`, `class_id`) VALUES
+INSERT INTO `student` (`id`, `s_name`, `s_number`, `class_id`) VALUES
 (1, '曾同学', 2017001, 1),
 (2, '孙同学', 2017002, 2);
 
@@ -237,15 +238,15 @@ INSERT INTO `student` (`id`, `s-name`, `s-number`, `class_id`) VALUES
 
 CREATE TABLE `teacher` (
   `id` int(11) NOT NULL,
-  `t-name` varchar(20) NOT NULL,
-  `t-number` int(11) NOT NULL
+  `t_name` varchar(20) NOT NULL,
+  `t_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='老师表';
 
 --
 -- 转存表中的数据 `teacher`
 --
 
-INSERT INTO `teacher` (`id`, `t-name`, `t-number`) VALUES
+INSERT INTO `teacher` (`id`, `t_name`, `t_number`) VALUES
 (1, '张老师', 201701),
 (2, '梁老师', 201702);
 
