@@ -18,8 +18,8 @@
 		</style>
 	</head>
 <body>
-	<p><?php echo ($_SESSION['student']['sname']); ?></p>
-	<p><?php echo ($_SESSION['student']['snumber']); ?></p>
+	<p><?php echo ($_SESSION['student']['s_name']); ?></p>
+	<p><?php echo ($_SESSION['student']['s_number']); ?></p>
 	<p id="nowTime"></p>
 	<button class="qd" type="submit">签到</button>
 	<script src="/kqxt/Public/js/xsqd.js"></script>

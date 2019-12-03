@@ -26,12 +26,38 @@ class IndexController extends Controller
 		$hours =  date("H",time());
 		$minutes = date("i",time());
 		$seconds = date("s",time());
-		$ymd = date('Y-m-d');
 		$currentTime = time();//当前时间
 		$cnt = $currentTime - strtotime("2019-8-26");//与已知时间的差值
 		$days = ceil($cnt/(3600*24));//算出天数
 		$week = ceil($days/7);
-    $User = $model
+
+		$amstartdate1="08:10";
+		$amstartdate2 = "10:10";
+		$pmstartdate1 = "14:30";
+		$pmstartdate2 = "16:30";
+		$his=date('H:i');
+		$amHour1 = floor((strtotime($his)-strtotime($amstartdate1))%86400/3600);
+		$amMinute1 = floor((strtotime($his)-strtotime($amstartdate1))%86400%3600/60);
+		$amHour2 = floor((strtotime($his)-strtotime($amstartdate2))%86400/3600);
+		$amMinute2 = floor((strtotime($his)-strtotime($amstartdate2))%86400%3600/60);
+		$pmHour1 = floor((strtotime($his)-strtotime($pmstartdate1))%86400/3600);
+		$pmMinute1 = floor((strtotime($his)-strtotime($pmstartdate1))%86400%3600/60);
+		$pmHour2 = floor((strtotime($his)-strtotime($pmstartdate2))%86400/3600);
+		$pmMinute2 = floor((strtotime($his)-strtotime($pmstartdate2))%86400%3600/60);
+		$classStrattime = [
+			"amHour1" => $amHour1,
+			"amMinute1" => $amMinute1,
+			"amHour2" => $amHour2,
+			"amMinute2" => $amMinute2,
+			"pmHour1" => $pmHour1,
+			"pmMinute1" => $pmMinute1,
+			"pmHour2" => $pmHour2,
+			"pmMinute2" => $pmMinute2
+
+		];
+
+
+    	$User = $model
 			// ->join('student')
 			// ->join('classtime')
 			// ->join("course_jihua")
@@ -75,8 +101,10 @@ class IndexController extends Controller
 			"seconds" => $seconds,
 			'week' => $week,
 			$currentTime,
-			$ymd,
-			'clll' => $classStrattime,
+			"时"=>$hour00,
+			"分"=>$minute00,
+			$his,
+			'ctime' => $classStrattime,
 		 );
 
 
