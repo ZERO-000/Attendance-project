@@ -44,10 +44,11 @@
 
 		var btn = document.getElementsByTagName('button')[0];
 		btn.onclick = function(){
+			var pInnerhtml = document.getElementsByTagName('p')[0].innerHTML;
 			$.ajax({
 				type:"POST",
 				url:"Judge",
-				data:{},
+				data:{'sname':pInnerhtml},
 				dataType:'json',
 				success:function(data){
 					console.log(data);

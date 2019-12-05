@@ -16,6 +16,7 @@ class IndexController extends Controller
 		$this->display();
 	}
 	public function Judge(){
+		$sname = I('post.sname');
 		// $where = array();
 		$model = M('attendance');
 		// $hours = data(h);
@@ -74,23 +75,13 @@ class IndexController extends Controller
 			->join('major ON major_jihua.major_id = major.id')
 			// ->join('major ON class.major_id = major.id')
 			->where(
-					['classtime.weeks' => $day],
-					['classtime.weeklyTime' => $week]
+					[
+						'student.s_name' => $sname,
+						'classtime.weeks' => $day,
+						'classtime.weeklyTimes' => $week,
+					]
 				)
-		  // ->join('class ON student.class_id = class.id')
-			  // ->where(
-			  //  array(
-				// 	    'attendance.student_id' => '1',
-				// 	    'attendance.classtime_id' =>"1",
-				// 	    'classtime.course_jihua_id' => '1',
-				// 			'course_jihua.course_id' => '1',
-				// 	    'course_jihua.major_jihua_id' => '1',
-				// 	    'major_jihua.major_id' => '1',
-				// 	    'class.major_id' => '1',
-				// 	    'student.class_id' => '1',
-				// 			// 'classtime.weeks' => "周一"
-				//    )
-				//  )
+
 		->select();
 		$result = array(
 			'year' => $year,
@@ -101,10 +92,9 @@ class IndexController extends Controller
 			"seconds" => $seconds,
 			'week' => $week,
 			$currentTime,
-			"时"=>$hour00,
-			"分"=>$minute00,
 			$his,
-			'ctime' => $classStrattime,
+			$sname,
+			'classStrattime' => $classStrattime
 		 );
 
 
