@@ -53,9 +53,19 @@
 				success:function(data){
 					console.log(data);
 					// console.log(hours);
-					var hours = data.hours;
-					var minutes = data.minutes;
-					// document.getElementById("nowTime").innerHTML = ;
+					var amHour1 = data.classStrattime.amHour1;
+					var amMinute1 = data.classStrattime.amMinute1;
+					var lesson = data.data[0].lesson;
+					console.log(amHour1);
+					console.log(lesson);
+
+					if (lesson == 1) {
+								if (true) {
+
+								} else {
+
+								}
+					}
 
 				}
 
