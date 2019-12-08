@@ -1,0 +1,40 @@
+[ 2019-12-09T00:02:51+08:00 ] 127.0.0.1 /kqxt/index.php/Home/index/lsjm.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.010910s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010983s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000037s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.053337s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.053407s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.009261s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.009308s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.011549s ]
+INFO: [ app_end ] --END-- [ RunTime:0.011637s ]
+
+[ 2019-12-09T00:11:04+08:00 ] 127.0.0.1 /kqxt/index.php/Home/index/lsjm.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001519s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.009258s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.009317s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000034s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000079s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.045011s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.045133s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.009208s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.009260s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.013779s ]
+INFO: [ app_end ] --END-- [ RunTime:0.013837s ]
+

@@ -17,7 +17,7 @@ class IndexController extends Controller
 	}
 	public function Judge(){
 		$sname = I('post.sname');
-		// $where = array();
+		$kaoqin  = I('post.kaoqin');
 		$model = M('attendance');
 		// $hours = data(h);
 		// $time = time();
@@ -33,10 +33,14 @@ class IndexController extends Controller
 		$week = ceil($days/7);
 
 		$amstartdate1="08:10";
+		$amenddate1 = '09:50';
 		$amstartdate2 = "10:10";
+		$amenddate2 = '11:50';
 		$pmstartdate1 = "14:30";
+		$pmenddate1 = "16:00";
 		$pmstartdate2 = "16:30";
-		$his=date('H:i');
+		$pmenddate2 = "18:00";
+		$his=date('10:50');
 		$amHour1 = floor((strtotime($his)-strtotime($amstartdate1))%86400/3600);
 		$amMinute1 = floor((strtotime($his)-strtotime($amstartdate1))%86400%3600/60);
 		$amHour2 = floor((strtotime($his)-strtotime($amstartdate2))%86400/3600);
@@ -56,6 +60,8 @@ class IndexController extends Controller
 			"pmMinute2" => $pmMinute2
 
 		];
+
+
 
 
     	$User = $model
@@ -79,6 +85,13 @@ class IndexController extends Controller
 						'student.s_name' => $sname,
 						'classtime.weeks' => $day,
 						'classtime.weeklyTimes' => $week,
+						'classtime.lesson' =>$lesson = (
+								$his < $amenddate1
+								) ? 1:(
+									($his < $amenddate2) ? 3 :(
+											($his < $pmenddate1) ? 5 : 7
+										)
+									)
 					]
 				)
 
@@ -94,11 +107,29 @@ class IndexController extends Controller
 			$currentTime,
 			$his,
 			$sname,
+			$lesson,
+			$kaoqin,
 			'classStrattime' => $classStrattime
 		 );
 
 
         $this->ajaxReturn($result,"json");
         // $this->ajaxReturn($,"json");
+	}
+
+	public function kaoqin(){
+		$student_id = I('post.student_id');
+		$classtime_id = I('post.classtime_id');
+		$kaoqin = I('post.kaoqin');
+		$model = M('attendance');
+		$Kq = $model
+		->where([
+			'student_id'=> $student_id,
+			'classtime_id' => $classtime_id
+		])
+		->save(["kaoqin"=>$kaoqin]);
+
+		$result = array('kaoqin' => $kaoqin ,$Kq);
+	    $this->ajaxReturn($result,"json");
 	}
 }

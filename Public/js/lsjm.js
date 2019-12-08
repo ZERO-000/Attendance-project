@@ -1,7 +1,8 @@
 
-
+//
 var a = document.getElementsByTagName("a");
 var tab = document.getElementById('tab');
+console.log(tab)
 
 // var t1 = document.getElementById("t1");
 // a.addEventListener('click', function(){
@@ -10,35 +11,35 @@ var tab = document.getElementById('tab');
 // }, false);
 	// alert(a[0].innerHTML);
 // var count = 0;
-window.onload =function a1(){
-		for(var i=0;i<a.length;i++){
-					// console.log(5512);
-			if(a[i].innerHTML == '未签到'){
-				a[i].onclick = function(e){
-					e.preventDefault();
-					this.innerHTML = '已签到'; 
-					// count++;
-					// console.log(count);
-					a1()
-					this.parentNode.style.backgroundColor = '#33db81';
-				}
-								
-			}else{
-					a[i].onclick = function(e){
-						e.preventDefault();
-						this.innerHTML = '未签到';
-						// count++;
-						// console.log(count);
-						// console.log(a[i]);
-						this.parentNode.style.backgroundColor = 'red';
-						a1();
-					}
-			}
-
-       
-		}
-	}
-
+// window.onload =function a1(){
+// 		for(var i=0;i<a.length;i++){
+// 					// console.log(5512);
+// 			if(a[i].innerHTML == '未签到'){
+// 				a[i].onclick = function(e){
+// 					e.preventDefault();
+// 					this.innerHTML = '已签到';
+// 					// count++;
+// 					// console.log(count);
+// 					a1()
+// 					this.parentNode.style.backgroundColor = '#33db81';
+// 				}
+//
+// 			}else{
+// 					a[i].onclick = function(e){
+// 						e.preventDefault();
+// 						this.innerHTML = '未签到';
+// 						// count++;
+// 						// console.log(count);
+// 						// console.log(a[i]);
+// 						this.parentNode.style.backgroundColor = 'red';
+// 						a1();
+// 					}
+// 			}
+//
+//
+// 		}
+// 	}
+//
 
 // window.onclick = function a2(){
 // 	for(var i = 0 ; i < tab.rows.length;i++){
@@ -68,7 +69,3 @@ window.onload =function a1(){
 // 		this.innerHTML = "test";
 // 	}
 // }
-
-
-
-
