@@ -20,6 +20,7 @@
 <body>
 	<p>{$Think.session.student.s_name}</p>
 	<p>{$Think.session.student.s_number}</p>
+
 	<p id="nowTime"></p>
 	<button class="qd" type="submit">签到</button>
 	<script src="__PUBLIC__/js/xsqd.js"></script>
@@ -57,8 +58,8 @@
 					// console.log(hours);
 					var amHour1 = data.classStrattime.amHour1;
 					var amMinute1 = data.classStrattime.amMinute1;
-					var amHour2 = data.classStrattime.amHour1;
-					var amMinute2 = data.classStrattime.amMinute1;
+					var amHour2 = data.classStrattime.amHour2;
+					var amMinute2 = data.classStrattime.amMinute2;
 					var pmHour1 = data.classStrattime.pmHour1;
 					var pmMinute1 = data.classStrattime.pmMinute1;
 					var pmHour2 = data.classStrattime.pmHour2;
@@ -108,7 +109,7 @@
 							},'json')
 							console.log('签到成功')
 						} else {
-							console.log('签到失败' + "..." + '你以迟到' + amHour2 + "小时" + amMinute2 + "分钟")
+							console.log('签到失败' + "..." + '你以迟到000000' + amHour2 + "小时" + amMinute2 + "分钟")
 							kaoqin = 2;
 							var data = {
 								'kaoqin':kaoqin,

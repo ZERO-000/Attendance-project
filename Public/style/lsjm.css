@@ -7,10 +7,11 @@ table{
 	margin:0 auto;
 }
 td{
-	width: 120px;
-	height: 30px;
-	text-align: center;
-	line-height: 5px;
+	width: 100px;
+    height: 58px;
+    text-align: center;
+    line-height: 5px;
+    padding: 10px;
 }
 .td1{
 	border-right: 40px solid #93d4c8;

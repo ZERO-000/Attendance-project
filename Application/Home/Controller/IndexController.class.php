@@ -16,12 +16,10 @@ class IndexController extends Controller
 		$this->display();
 	}
 	public function Judge(){
+
+
 		$sname = I('post.sname');
-		$kaoqin  = I('post.kaoqin');
 		$model = M('attendance');
-		// $hours = data(h);
-		// $time = time();
-		// date("y-m-d",$time);
 		$day = date('D',time());
 		$year = date("Y",time());
 		$hours =  date("H",time());
@@ -40,7 +38,7 @@ class IndexController extends Controller
 		$pmenddate1 = "16:00";
 		$pmstartdate2 = "16:30";
 		$pmenddate2 = "18:00";
-		$his=date('10:50');
+		$his=date('H:i');
 		$amHour1 = floor((strtotime($his)-strtotime($amstartdate1))%86400/3600);
 		$amMinute1 = floor((strtotime($his)-strtotime($amstartdate1))%86400%3600/60);
 		$amHour2 = floor((strtotime($his)-strtotime($amstartdate2))%86400/3600);
@@ -58,28 +56,14 @@ class IndexController extends Controller
 			"pmMinute1" => $pmMinute1,
 			"pmHour2" => $pmHour2,
 			"pmMinute2" => $pmMinute2
-
 		];
-
-
-
-
     	$User = $model
-			// ->join('student')
-			// ->join('classtime')
-			// ->join("course_jihua")
-			// ->join('course')
-			// ->join('major_jihua')
-			// ->join('major')
-			// ->join('class')
 			->join('student ON attendance.student_id = student.id')
 			->join('class ON student.class_id = class.id')
 			->join('classtime ON attendance.classtime_id = classtime.id')
 			->join('course_jihua ON classtime.course_jihua_id = course_jihua.id')
 			->join('course ON course_jihua.course_id = course.id')
 			->join('major_jihua ON course_jihua.major_jihua_id = major_jihua.id')
-			->join('major ON major_jihua.major_id = major.id')
-			// ->join('major ON class.major_id = major.id')
 			->where(
 					[
 						'student.s_name' => $sname,
@@ -94,8 +78,9 @@ class IndexController extends Controller
 									)
 					]
 				)
+			->select();
 
-		->select();
+			$client_ip = get_client_ip();
 		$result = array(
 			'year' => $year,
 			"data" => $User,
@@ -108,13 +93,12 @@ class IndexController extends Controller
 			$his,
 			$sname,
 			$lesson,
-			$kaoqin,
+			$client_ip,
 			'classStrattime' => $classStrattime
 		 );
 
 
         $this->ajaxReturn($result,"json");
-        // $this->ajaxReturn($,"json");
 	}
 
 	public function kaoqin(){
@@ -131,5 +115,13 @@ class IndexController extends Controller
 
 		$result = array('kaoqin' => $kaoqin ,$Kq);
 	    $this->ajaxReturn($result,"json");
+	}
+
+
+	public function student_list(){
+		$model = M('attendance');
+		$stu_attend = $model -> select();
+		$result = array('a' => $stu_attend );
+		$this->ajaxReturn($result,'json');
 	}
 }

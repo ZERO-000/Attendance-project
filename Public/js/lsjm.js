@@ -1,8 +1,32 @@
 
 //
-var a = document.getElementsByTagName("a");
-var tab = document.getElementById('tab');
-console.log(tab)
+
+$(document).ready(function(){
+    console.log(2123)
+    $("#tab td").click(function() {
+
+        var column_num = parseInt( $(this).index() ) + 1;
+        var row_num = parseInt( $(this).parent().index() )+1;
+
+        console.log( "Row_num =" + row_num + "  ,  Rolumn_num ="+ column_num );
+    });
+    var tab = document.getElementById('tab');
+    console.log(tab.rows[0].cells[0].innerHTML)
+
+
+    $.ajax({
+        type:'POST',
+        url:'student_list',
+        dataType:'json',
+        data:{},
+        success:function(data){
+            console.log(data)
+        }
+    })
+
+
+
+});
 
 // var t1 = document.getElementById("t1");
 // a.addEventListener('click', function(){
