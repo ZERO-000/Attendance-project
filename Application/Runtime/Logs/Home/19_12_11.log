@@ -3433,3 +3433,23 @@ SQL: SHOW COLUMNS FROM `attendance` [ RunTime:0.0102s ]
 SQL: SELECT * FROM `attendance` INNER JOIN student ON attendance.student_id = student.id INNER JOIN classtime ON attendance.classtime_id = classtime.id INNER JOIN mac ON attendance.mac_id = mac.id  WHERE classtime.weeks = 'Wed' AND classtime.weeklyTimes = 16 AND classtime.lesson = 1  [ RunTime:0.0006s ]
 SQL: SELECT * FROM `attendance` INNER JOIN student ON attendance.student_id = student.id INNER JOIN classtime ON attendance.classtime_id = classtime.id  WHERE classtime.weeks = 'Wed' AND classtime.weeklyTimes = 16 AND classtime.lesson = 1  [ RunTime:0.0005s ]
 
+[ 2019-12-11T11:37:42+08:00 ] 127.0.0.1 /kqxt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001430s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.008659s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008722s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.016343s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.016794s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.075731s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.075785s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.014337s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.014396s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.011764s ]
+INFO: [ app_end ] --END-- [ RunTime:0.011829s ]
+
