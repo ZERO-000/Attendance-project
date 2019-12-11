@@ -21,7 +21,7 @@ class IndexController extends Controller
 		$sname = I('post.sname');
 		$model = M('attendance');
 		$day  = date('D',time());
-		$ip = get_client_ip();
+		$ip = get_client_ip(0,ture);
 		$currentTime = time();//当前时间
 		$cnt = $currentTime - strtotime("2019-8-26");//与已知时间的差值
 		$days = ceil($cnt/(3600*24));//算出天数
@@ -97,7 +97,14 @@ class IndexController extends Controller
 		$kaoqin = I('post.kaoqin');
 		$model = M('attendance');
 		$model1 = M('mac');
+		$model2 = M('ip');
 		$ip = get_client_ip();
+		$ipp = $model2
+		->where([
+			'ip'=>$ip
+		])
+		->field('id')
+		->find();
 		$mkq = $model1
 		->where(['mac'=>$mac])
 		->field('id')
@@ -109,10 +116,10 @@ class IndexController extends Controller
 		])
 		->save([
 			"kaoqin"=>$kaoqin,
-			'mac_id' => $mkq[id]
+			'ip_id' => $ipp[id]
 		]);
 
-		$result = array('kaoqin' => $kaoqin ,$Kq,$mac,$mkq);
+		$result = array('kaoqin' => $kaoqin ,$Kq,$ipp);
 	    $this->ajaxReturn($result,"json");
 	}
 
@@ -139,7 +146,7 @@ class IndexController extends Controller
 		$stu_attend = $model
 		->join('student ON attendance.student_id = student.id')
 		->join('classtime ON attendance.classtime_id = classtime.id')
-		->join('mac ON attendance.mac_id = mac.id')
+		->join('ip ON attendance.ip_id = ip.id')
 		->where([
 			'classtime.weeks' =>$day,
 			'classtime.weeklyTimes'=>$week,
@@ -174,4 +181,4 @@ class IndexController extends Controller
 		);
 		$this->ajaxReturn($result,'json');
 	}
-}
+}]

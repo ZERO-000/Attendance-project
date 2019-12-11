@@ -9,7 +9,7 @@
 <body>
 <div class="div1"><p>讲台</p></div>
 
-<table width="1250" border="0" id='tab'>
+<table width="1000" border="0" id='tab'>
   <tr>
     <td></td>
     <td class="td1"><a href=""></a></td>

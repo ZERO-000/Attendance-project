@@ -80,6 +80,8 @@
 					var lesson = data.data[0].lesson;
 					var student_id = data.data[0].student_id;
 					var classtime_id = data.data[0].classtime_id;
+					var ip = data[3]
+					 qiand = document.getElementById('qiand').innerHTML = ip
 
 					//console.log(amHour1);
 					console.log(lesson);
