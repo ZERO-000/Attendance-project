@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.4.15
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2019-12-02 03:47:35
--- 服务器版本： 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: 2019-12-10 10:59:46
+-- 服务器版本： 10.1.8-MariaDB
+-- PHP Version: 5.5.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,11 +28,11 @@ USE `kqxt`;
 -- 表的结构 `assistant`
 --
 
-CREATE TABLE `assistant` (
+CREATE TABLE IF NOT EXISTS `assistant` (
   `id` int(11) NOT NULL,
   `a_name` varchar(20) NOT NULL,
   `a_number` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='辅导员';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='辅导员';
 
 --
 -- 转存表中的数据 `assistant`
@@ -48,20 +48,40 @@ INSERT INTO `assistant` (`id`, `a_name`, `a_number`) VALUES
 -- 表的结构 `attendance`
 --
 
-CREATE TABLE `attendance` (
+CREATE TABLE IF NOT EXISTS `attendance` (
   `id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `classtime_id` int(11) NOT NULL,
+  `mac_id` int(11) NOT NULL,
   `kaoqin` int(11) NOT NULL DEFAULT '0' COMMENT '0未签到，1已签到。2迟到'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考勤表';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='考勤表';
 
 --
 -- 转存表中的数据 `attendance`
 --
 
-INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`, `kaoqin`) VALUES
-(1, 1, 1, 0),
-(2, 2, 2, 0);
+INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`, `mac_id`,`kaoqin`) VALUES
+(1, 1, 1, 1 , 0),
+(2, 2, 2, 1 , 0),
+(3, 1, 3, 1 , 0),
+(4, 2, 3, 1 , 0),
+(5, 1, 4, 1 , 1),
+(6, 1, 6, 1 , 2),
+(7, 1, 8, 1 , 0),
+(8, 1, 11, 1 , 0),
+(9, 2, 11, 1 , 0),
+(10, 3, 11, 1 , 0),
+(11, 4, 11, 1 , 0),
+(12, 2, 8, 1 , 0),
+(13, 3, 8, 1 , 0),
+(14, 4, 8, 1 , 0),
+(15, 1, 9, 1 , 2),
+(16, 1, 16, 1 , 1),
+(17, 1, 17, 1 , 2),
+(18, 1, 18, 1 , 2),
+(19, 2, 16, 1 , 0),
+(20, 2, 17, 1 , 0),
+(21, 2, 18, 1 , 0);
 
 -- --------------------------------------------------------
 
@@ -69,13 +89,13 @@ INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`, `kaoqin`) VALUES
 -- 表的结构 `class`
 --
 
-CREATE TABLE `class` (
+CREATE TABLE IF NOT EXISTS `class` (
   `id` int(11) NOT NULL,
   `cl_name` varchar(30) NOT NULL,
   `cl_number` int(11) NOT NULL,
   `banzhang` varchar(30) NOT NULL,
   `major_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='班级表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='班级表';
 
 --
 -- 转存表中的数据 `class`
@@ -91,13 +111,13 @@ INSERT INTO `class` (`id`, `cl_name`, `cl_number`, `banzhang`, `major_id`) VALUE
 -- 表的结构 `classtime`
 --
 
-CREATE TABLE `classtime` (
+CREATE TABLE IF NOT EXISTS `classtime` (
   `id` int(11) NOT NULL,
   `lesson` int(11) NOT NULL,
   `weeklyTimes` int(11) NOT NULL,
   `weeks` varchar(20) NOT NULL,
   `course_jihua_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='上课时间表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='上课时间表';
 
 --
 -- 转存表中的数据 `classtime`
@@ -105,7 +125,21 @@ CREATE TABLE `classtime` (
 
 INSERT INTO `classtime` (`id`, `lesson`, `weeklyTimes`, `weeks`, `course_jihua_id`) VALUES
 (1, 4, 15, 'Mon', 1),
-(2, 4, 2, '周三', 2);
+(2, 4, 15, 'Tue', 2),
+(3, 4, 15, 'Thu', 1),
+(4, 1, 15, 'Sun', 1),
+(6, 3, 15, 'Sun', 1),
+(8, 5, 15, 'Sun', 1),
+(9, 7, 15, 'Sun', 1),
+(10, 3, 16, 'Wed', 1),
+(11, 1, 16, 'Mon', 1),
+(12, 3, 16, 'Tue', 1),
+(13, 5, 16, 'Thu', 1),
+(14, 7, 16, 'Fri', 1),
+(15, 1, 16, 'Sat', 1),
+(16, 3, 16, 'Mon', 1),
+(17, 5, 16, 'Mon', 1),
+(18, 7, 16, 'Mon', 1);
 
 -- --------------------------------------------------------
 
@@ -113,19 +147,19 @@ INSERT INTO `classtime` (`id`, `lesson`, `weeklyTimes`, `weeks`, `course_jihua_i
 -- 表的结构 `course`
 --
 
-CREATE TABLE `course` (
+CREATE TABLE IF NOT EXISTS `course` (
   `id` int(11) NOT NULL,
   `co_name` varchar(20) NOT NULL,
   `co_number` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课程表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='课程表';
 
 --
 -- 转存表中的数据 `course`
 --
 
 INSERT INTO `course` (`id`, `co_name`, `co_number`) VALUES
-(1, '英语教育', '25f21'),
-(2, '汽车维修', '14n15');
+(1, 'web响应式开发', '25f21'),
+(2, 'HTML5 App开发', '14n15');
 
 -- --------------------------------------------------------
 
@@ -133,20 +167,20 @@ INSERT INTO `course` (`id`, `co_name`, `co_number`) VALUES
 -- 表的结构 `course_jihua`
 --
 
-CREATE TABLE `course_jihua` (
+CREATE TABLE IF NOT EXISTS `course_jihua` (
   `id` int(11) NOT NULL,
   `semester` varchar(20) NOT NULL,
   `course_id` int(11) NOT NULL,
   `major_jihua_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课程计划表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='课程计划表';
 
 --
 -- 转存表中的数据 `course_jihua`
 --
 
 INSERT INTO `course_jihua` (`id`, `semester`, `course_id`, `major_jihua_id`) VALUES
-(1, '第二学期', 1, 1),
-(2, '第一学期', 1, 1);
+(1, '第一学期', 1, 1),
+(2, '第二学期', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -154,12 +188,12 @@ INSERT INTO `course_jihua` (`id`, `semester`, `course_id`, `major_jihua_id`) VAL
 -- 表的结构 `mac`
 --
 
-CREATE TABLE `mac` (
+CREATE TABLE IF NOT EXISTS `mac` (
   `id` int(11) NOT NULL,
   `mac` varchar(60) NOT NULL,
   `row` int(11) NOT NULL,
   `col` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课室电脑表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='课室电脑表';
 
 --
 -- 转存表中的数据 `mac`
@@ -175,11 +209,11 @@ INSERT INTO `mac` (`id`, `mac`, `row`, `col`) VALUES
 -- 表的结构 `major`
 --
 
-CREATE TABLE `major` (
+CREATE TABLE IF NOT EXISTS `major` (
   `id` int(11) NOT NULL,
   `m_name` varchar(20) NOT NULL,
   `jieshao` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='专业表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='专业表';
 
 --
 -- 转存表中的数据 `major`
@@ -195,11 +229,11 @@ INSERT INTO `major` (`id`, `m_name`, `jieshao`) VALUES
 -- 表的结构 `major_jihua`
 --
 
-CREATE TABLE `major_jihua` (
+CREATE TABLE IF NOT EXISTS `major_jihua` (
   `id` int(11) NOT NULL,
   `grade` varchar(20) NOT NULL,
   `major_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='专业计划表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='专业计划表';
 
 --
 -- 转存表中的数据 `major_jihua`
@@ -215,12 +249,12 @@ INSERT INTO `major_jihua` (`id`, `grade`, `major_id`) VALUES
 -- 表的结构 `student`
 --
 
-CREATE TABLE `student` (
+CREATE TABLE IF NOT EXISTS `student` (
   `id` int(11) NOT NULL,
   `s_name` varchar(20) NOT NULL,
   `s_number` int(11) NOT NULL,
   `class_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='学生';
 
 --
 -- 转存表中的数据 `student`
@@ -228,7 +262,9 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`id`, `s_name`, `s_number`, `class_id`) VALUES
 (1, '曾同学', 2017001, 1),
-(2, '孙同学', 2017002, 2);
+(2, '孙同学', 2017002, 2),
+(3, '张三', 2017003, 2),
+(4, '李四', 2017004, 2);
 
 -- --------------------------------------------------------
 
@@ -236,11 +272,11 @@ INSERT INTO `student` (`id`, `s_name`, `s_number`, `class_id`) VALUES
 -- 表的结构 `teacher`
 --
 
-CREATE TABLE `teacher` (
+CREATE TABLE IF NOT EXISTS `teacher` (
   `id` int(11) NOT NULL,
   `t_name` varchar(20) NOT NULL,
   `t_number` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='老师表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='老师表';
 
 --
 -- 转存表中的数据 `teacher`
@@ -266,7 +302,8 @@ ALTER TABLE `assistant`
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
-  ADD KEY `classtime_id` (`classtime_id`);
+  ADD KEY `classtime_id` (`classtime_id`),
+  ADD KEY `mac_id` (`mac_id`);
 
 --
 -- Indexes for table `class`
@@ -329,64 +366,64 @@ ALTER TABLE `teacher`
   ADD PRIMARY KEY (`id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `assistant`
+-- AUTO_INCREMENT for table `assistant`
 --
 ALTER TABLE `assistant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- 使用表AUTO_INCREMENT `attendance`
+-- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
--- 使用表AUTO_INCREMENT `class`
+-- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- 使用表AUTO_INCREMENT `classtime`
+-- AUTO_INCREMENT for table `classtime`
 --
 ALTER TABLE `classtime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
--- 使用表AUTO_INCREMENT `course`
+-- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- 使用表AUTO_INCREMENT `course_jihua`
+-- AUTO_INCREMENT for table `course_jihua`
 --
 ALTER TABLE `course_jihua`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- 使用表AUTO_INCREMENT `mac`
+-- AUTO_INCREMENT for table `mac`
 --
 ALTER TABLE `mac`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- 使用表AUTO_INCREMENT `major`
+-- AUTO_INCREMENT for table `major`
 --
 ALTER TABLE `major`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- 使用表AUTO_INCREMENT `major_jihua`
+-- AUTO_INCREMENT for table `major_jihua`
 --
 ALTER TABLE `major_jihua`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- 使用表AUTO_INCREMENT `student`
+-- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- 使用表AUTO_INCREMENT `teacher`
+-- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- 限制导出的表
 --
@@ -396,7 +433,8 @@ ALTER TABLE `teacher`
 --
 ALTER TABLE `attendance`
   ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`),
-  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`classtime_id`) REFERENCES `classtime` (`id`);
+  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`classtime_id`) REFERENCES `classtime` (`id`),
+  ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`mac_id`) REFERENCES `mac` (`id`);
 
 --
 -- 限制表 `class`

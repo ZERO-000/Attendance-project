@@ -18,17 +18,19 @@
 </head>
 <body>
 	<div class="form1">
-		<h3>辅导员登陆</h3>
+		<form action="/kqxt/index.php/Home/User/do_login_assistant" method="post">
+		<h3>登陆</h3>
 		<div class="number">
 			<label for="username">账号</label>
-			<input type="text" id="uname" class="input">
+			<input type="text" id="uname" class="input" name="a_name">
 		</div>
 		<div class="number">
 			<label for="textpwd">密码</label>
-			<input type="password" id="pwd" class="input">
+			<input type="password" id="pwd" class="input" name="a_number">
 		</div>
 		<input class="button" type="submit" name="submit" value="提交">
 		<input class="button" type="reset" name="reset" value="重置" />
+		</form>
 	</div>
 <!-- 	<div  class="animation1"></div>
 	<div  class="animation2"></div> -->

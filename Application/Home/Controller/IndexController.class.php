@@ -3,7 +3,6 @@ namespace Home\Controller;
 use Home\Model\MessageViewModel;
 use Think\Controller;
 use Think\Model;
-use Think\Page;
 class IndexController extends Controller
 {
 	public function index(){
@@ -15,21 +14,17 @@ class IndexController extends Controller
 	public function lsjm(){
 		$this->display();
 	}
+	public function gtm(){
+		$this->display();
+	}
 	public function Judge(){
-
-
 		$sname = I('post.sname');
 		$model = M('attendance');
-		$day = date('D',time());
-		$year = date("Y",time());
-		$hours =  date("H",time());
-		$minutes = date("i",time());
-		$seconds = date("s",time());
+		$day  = date('D',time());
 		$currentTime = time();//当前时间
 		$cnt = $currentTime - strtotime("2019-8-26");//与已知时间的差值
 		$days = ceil($cnt/(3600*24));//算出天数
 		$week = ceil($days/7);
-
 		$amstartdate1="08:10";
 		$amenddate1 = '09:50';
 		$amstartdate2 = "10:10";
@@ -79,49 +74,101 @@ class IndexController extends Controller
 					]
 				)
 			->select();
-
-			$client_ip = get_client_ip();
 		$result = array(
-			'year' => $year,
 			"data" => $User,
 			'day' => $day,
-			"hours" => $hours,
-			"minutes" => $minutes,
-			"seconds" => $seconds,
 			'week' => $week,
+			'classStrattime' => $classStrattime,
 			$currentTime,
 			$his,
 			$sname,
-			$lesson,
-			$client_ip,
-			'classStrattime' => $classStrattime
 		 );
-
-
         $this->ajaxReturn($result,"json");
 	}
+
+
 
 	public function kaoqin(){
 		$student_id = I('post.student_id');
 		$classtime_id = I('post.classtime_id');
+		$mac = I('post.mac');
 		$kaoqin = I('post.kaoqin');
 		$model = M('attendance');
+		$model1 = M('mac');
+		$mkq = $model1
+		->where('mac=%d',$mac)
+		->field('id')
+		->find();
 		$Kq = $model
 		->where([
 			'student_id'=> $student_id,
 			'classtime_id' => $classtime_id
 		])
-		->save(["kaoqin"=>$kaoqin]);
+		->save([
+			"kaoqin"=>$kaoqin,
+			'mac_id' => $mkq[id]
+		]);
 
-		$result = array('kaoqin' => $kaoqin ,$Kq);
+		$result = array('kaoqin' => $kaoqin ,$Kq,$mac,$mkq);
 	    $this->ajaxReturn($result,"json");
 	}
 
 
+
+
+
+
+
+
 	public function student_list(){
 		$model = M('attendance');
-		$stu_attend = $model -> select();
-		$result = array('a' => $stu_attend );
+		$model1 = M('attendance');
+		$day = date('D',time());
+		$currentTime = time();
+		$cnt = $currentTime - strtotime("2019-8-26");
+		$days = ceil($cnt/(3600*24));
+		$week = ceil($days/7);
+		$amenddate1 = '09:50';
+		$amenddate2 = '11:50';
+		$pmenddate1 = "16:00";
+		$pmenddate2 = "18:00";
+		$his=date('H:i');
+		$stu_attend = $model
+		->join('student ON attendance.student_id = student.id')
+		->join('classtime ON attendance.classtime_id = classtime.id')
+		->join('mac ON attendance.mac_id = mac.id')
+		->where([
+			'classtime.weeks' =>$day,
+			'classtime.weeklyTimes'=>$week,
+			'classtime.lesson' =>$lesson = (
+					$his < $amenddate1
+					) ? 1:(
+						($his < $amenddate2) ? 3 :(
+								($his < $pmenddate1) ? 5 : 7
+							)
+						)
+		])
+		->select();
+		$stu_at = $model1
+		->join('student ON attendance.student_id = student.id')
+		->join('classtime ON attendance.classtime_id = classtime.id')
+		->where([
+			'classtime.weeks' =>$day,
+			'classtime.weeklyTimes'=>$week,
+			'classtime.lesson' =>$lesson = (
+					$his < $amenddate1
+					) ? 1:(
+						($his < $amenddate2) ? 3 :(
+								($his < $pmenddate1) ? 5 : 7
+							)
+						)
+		])
+		->select();
+
+		$result = array(
+			'data' => $stu_attend,
+			'data1' => $stu_at
+		);
 		$this->ajaxReturn($result,'json');
 	}
 }

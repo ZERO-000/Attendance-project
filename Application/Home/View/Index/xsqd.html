@@ -20,11 +20,12 @@
 <body>
 	<p>{$Think.session.student.s_name}</p>
 	<p>{$Think.session.student.s_number}</p>
-
 	<p id="nowTime"></p>
 	<button class="qd" type="submit">签到</button>
+	<!-- <button>dasdadasdas</button> -->
 	<script src="__PUBLIC__/js/xsqd.js"></script>
 	<script>
+
 
 
 		//
@@ -56,6 +57,7 @@
 				success:function(data){
 					console.log(data);
 					// console.log(hours);
+					var mac = "<?php require_once './Application/Home/Common/getMac.php';echo $resultMac;?>";
 					var amHour1 = data.classStrattime.amHour1;
 					var amMinute1 = data.classStrattime.amMinute1;
 					var amHour2 = data.classStrattime.amHour2;
@@ -76,7 +78,8 @@
 							var data = {
 								'kaoqin':kaoqin,
 								'student_id':student_id,
-								'classtime_id':classtime_id
+								'classtime_id':classtime_id,
+								'mac':mac
 							};
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
@@ -88,7 +91,8 @@
 							var data = {
 								'kaoqin':kaoqin,
 								'student_id':student_id,
-								'classtime_id':classtime_id
+								'classtime_id':classtime_id,
+								'mac':mac
 							};
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
@@ -102,7 +106,8 @@
 							var data = {
 								'kaoqin':kaoqin,
 								'student_id':student_id,
-								'classtime_id':classtime_id
+								'classtime_id':classtime_id,
+								'mac':mac
 							};
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
@@ -114,7 +119,8 @@
 							var data = {
 								'kaoqin':kaoqin,
 								'student_id':student_id,
-								'classtime_id':classtime_id
+								'classtime_id':classtime_id,
+								'mac':mac
 							};
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
@@ -128,7 +134,8 @@
 							var data = {
 								'kaoqin':kaoqin,
 								'student_id':student_id,
-								'classtime_id':classtime_id
+								'classtime_id':classtime_id,
+								'mac':mac
 							};
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
@@ -140,7 +147,8 @@
 							var data = {
 								'kaoqin':kaoqin,
 								'student_id':student_id,
-								'classtime_id':classtime_id
+								'classtime_id':classtime_id,
+								'mac':mac
 							};
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
@@ -154,7 +162,8 @@
 							 var data = {
 								 'kaoqin':kaoqin,
 								 'student_id':student_id,
-								 'classtime_id':classtime_id
+								 'classtime_id':classtime_id,
+								 'mac':mac
 							 };
 							 $.post("__URL__/kaoqin",data,function (msg) {
 								console.log(msg)
@@ -166,7 +175,8 @@
 							 var data = {
 								 'kaoqin':kaoqin,
 								 'student_id':student_id,
-								 'classtime_id':classtime_id
+								 'classtime_id':classtime_id,
+								 'mac':mac
 							 };
 							 $.post("__URL__/kaoqin",data,function (msg) {
 								console.log(msg)
@@ -178,6 +188,9 @@
 
 			})
 		}
+
+
+
 
 
 	</script>

@@ -35,3 +35,8 @@ a{
 	background: #2ed842;
 	color: #FFFFFF;
 }
+#que {
+    width: 1250px;
+    margin: 20px auto;
+    text-align: left;
+}

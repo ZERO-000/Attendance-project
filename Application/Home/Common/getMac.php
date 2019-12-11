@@ -57,5 +57,7 @@ class GetMacAddr{
 
 }
  //方法使用
-//$mac = new GetMacAddr(PHP_OS);
-// echo $mac->mac_addr;
+$mac = new GetMacAddr(PHP_OS);
+$resultMac =  $mac->mac_addr;
+// $macResult = array('mac'=>$mac->mac_addr );
+// $this->ajaxReturn($macResult,'json');

@@ -45,8 +45,8 @@ class UserController extends Controller
         }
 	}
 	public function do_login_assistant(){
-		$name = I('post.a_name');
-		$number = I('post.a_number');
+		$a_name = I('post.a_name');
+		$a_number = I('post.a_number');
 		$model = M('assistant');
 		$assistant = $model->where("a_name='%s' and a_number='%s'",$a_name,$a_number)->find();
 		if ($assistant) {
