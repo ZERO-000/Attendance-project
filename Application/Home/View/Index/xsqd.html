@@ -20,15 +20,26 @@
 <body>
 	<p>{$Think.session.student.s_name}</p>
 	<p>{$Think.session.student.s_number}</p>
-	<p id="nowTime"></p>
+	<p id="qiand"></p>
 	<button class="qd" type="submit">签到</button>
 	<!-- <button>dasdadasdas</button> -->
 	<script src="__PUBLIC__/js/xsqd.js"></script>
 	<script>
 
+		function qiandcg(){
+				var btn = document.getElementsByTagName('button')[0];
+				var qiand = document.getElementById('qiand');
+				btn.style.display = 'none';
+				qiand.innerHTML = "签到成功";
 
+		}
+		function qiandsb(){
+				var btn = document.getElementsByTagName('button')[0];
+				var qiand = document.getElementById('qiand');
+				btn.style.display = 'none';
+				qiand.innerHTML = "签到失败";
 
-		//
+		}
 		// function timer(){
 		// 	time = new Date();
 		// 	year = time.getFullYear();
@@ -84,9 +95,9 @@
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
 							},'json')
-							console.log('签到成功')
+							alert('签到成功');
 						} else {
-							console.log('签到失败' + "..." + '你以迟到' + amHour1 + "小时" + amMinute1 + "分钟")
+							alert('签到失败' + "..." + '你以迟到' + amHour1 + "小时" + amMinute1 + "分钟")
 							kaoqin = 2;
 							var data = {
 								'kaoqin':kaoqin,
@@ -112,9 +123,9 @@
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
 							},'json')
-							console.log('签到成功')
+							alert('签到成功')
 						} else {
-							console.log('签到失败' + "..." + '你以迟到000000' + amHour2 + "小时" + amMinute2 + "分钟")
+							alert('签到失败' + "..." + '你以迟到000000' + amHour2 + "小时" + amMinute2 + "分钟")
 							kaoqin = 2;
 							var data = {
 								'kaoqin':kaoqin,
@@ -140,9 +151,9 @@
 							$.post("__URL__/kaoqin",data,function (msg) {
 							   console.log(msg)
 							},'json')
-							console.log('签到成功')
+							alert('签到成功')
 						} else {
-							console.log('签到失败' + "..." + '你以迟到' + pmHour1 + "小时" + pmMinute1 + "分钟")
+							alert('签到失败' + "..." + '你以迟到' + pmHour1 + "小时" + pmMinute1 + "分钟")
 							kaoqin = 2;
 							var data = {
 								'kaoqin':kaoqin,
@@ -168,9 +179,10 @@
 							 $.post("__URL__/kaoqin",data,function (msg) {
 								console.log(msg)
 							 },'json')
-							console.log('签到成功')
+							alert('签到成功')
+							qiandcg();
 						} else {
-							console.log('签到失败' + "..." + '你以迟到' + pmHour2 + "小时" + pmMinute2 + "分钟")
+							alert('签到失败' + "..." + '你以迟到' + pmHour2 + "小时" + pmMinute2 + "分钟")
 							 kaoqin = 2;
 							 var data = {
 								 'kaoqin':kaoqin,

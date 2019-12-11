@@ -21,6 +21,7 @@ class IndexController extends Controller
 		$sname = I('post.sname');
 		$model = M('attendance');
 		$day  = date('D',time());
+		$ip = get_client_ip();
 		$currentTime = time();//当前时间
 		$cnt = $currentTime - strtotime("2019-8-26");//与已知时间的差值
 		$days = ceil($cnt/(3600*24));//算出天数
@@ -82,6 +83,7 @@ class IndexController extends Controller
 			$currentTime,
 			$his,
 			$sname,
+			$ip
 		 );
         $this->ajaxReturn($result,"json");
 	}
@@ -96,7 +98,7 @@ class IndexController extends Controller
 		$model = M('attendance');
 		$model1 = M('mac');
 		$mkq = $model1
-		->where('mac=%d',$mac)
+		->where(['mac'=>$mac])
 		->field('id')
 		->find();
 		$Kq = $model
