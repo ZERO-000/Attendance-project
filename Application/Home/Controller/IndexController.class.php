@@ -97,6 +97,7 @@ class IndexController extends Controller
 		$kaoqin = I('post.kaoqin');
 		$model = M('attendance');
 		$model1 = M('mac');
+		$ip = get_client_ip();
 		$mkq = $model1
 		->where(['mac'=>$mac])
 		->field('id')
