@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2019-12-11 11:38:11
+-- Generation Time: 2019-12-12 01:08:58
 -- 服务器版本： 10.1.8-MariaDB
 -- PHP Version: 5.5.30
 
@@ -52,45 +52,48 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `classtime_id` int(11) NOT NULL,
-  `mac_id` int(11) DEFAULT NULL,
+  `ip_id` int(10) DEFAULT NULL,
   `kaoqin` int(11) NOT NULL DEFAULT '0' COMMENT '0未签到，1已签到。2迟到'
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='考勤表';
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='考勤表';
 
 --
 -- 转存表中的数据 `attendance`
 --
 
-INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`, `mac_id`, `kaoqin`) VALUES
-(1, 1, 1, 1, 0),
-(2, 2, 2, 1, 0),
-(3, 1, 3, 1, 0),
-(4, 2, 3, 1, 0),
-(5, 1, 4, 1, 1),
-(6, 1, 6, 1, 2),
-(7, 1, 8, 1, 0),
-(8, 1, 11, 1, 0),
-(9, 2, 11, 1, 0),
-(10, 3, 11, 1, 0),
-(11, 4, 11, 1, 0),
-(12, 2, 8, 1, 0),
-(13, 3, 8, 1, 0),
-(14, 4, 8, 1, 0),
-(15, 1, 9, 1, 2),
-(16, 1, 16, 1, 1),
-(17, 1, 17, 1, 2),
-(18, 1, 18, 1, 2),
-(19, 2, 16, 1, 0),
-(20, 2, 17, 1, 0),
-(21, 2, 18, 1, 0),
-(22, 1, 19, 3, 0),
-(23, 1, 20, 3, 1),
-(24, 2, 20, 2, 2),
-(28, 3, 20, 1, 1),
+INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`, `ip_id`, `kaoqin`) VALUES
+(1, 1, 1, NULL, 0),
+(2, 2, 2, NULL, 0),
+(3, 1, 3, NULL, 0),
+(4, 2, 3, NULL, 0),
+(5, 1, 4, NULL, 1),
+(6, 1, 6, NULL, 2),
+(7, 1, 8, NULL, 0),
+(8, 1, 11, NULL, 0),
+(9, 2, 11, NULL, 0),
+(10, 3, 11, NULL, 0),
+(11, 4, 11, NULL, 0),
+(12, 2, 8, NULL, 0),
+(13, 3, 8, NULL, 0),
+(14, 4, 8, NULL, 0),
+(15, 1, 9, NULL, 2),
+(16, 1, 16, NULL, 1),
+(17, 1, 17, NULL, 2),
+(18, 1, 18, NULL, 2),
+(19, 2, 16, NULL, 0),
+(20, 2, 17, NULL, 0),
+(21, 2, 18, NULL, 0),
+(22, 1, 19, NULL, 0),
+(23, 1, 20, NULL, 1),
+(24, 2, 20, NULL, 2),
+(28, 3, 20, NULL, 1),
 (29, 4, 20, NULL, 0),
-(32, 2, 21, 2, 2),
-(33, 3, 21, 3, 1),
+(32, 2, 21, NULL, 2),
+(33, 3, 21, NULL, 1),
 (34, 4, 21, NULL, 0),
-(35, 1, 21, 3, 1);
+(35, 1, 21, NULL, 1),
+(36, 1, 22, 3, 2),
+(37, 2, 22, 4, 2),
+(38, 3, 22, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -126,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `classtime` (
   `weeklyTimes` int(11) NOT NULL,
   `weeks` varchar(20) NOT NULL,
   `course_jihua_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='上课时间表';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='上课时间表';
 
 --
 -- 转存表中的数据 `classtime`
@@ -151,7 +154,8 @@ INSERT INTO `classtime` (`id`, `lesson`, `weeklyTimes`, `weeks`, `course_jihua_i
 (18, 7, 16, 'Mon', 1),
 (19, 5, 16, 'Tue', 1),
 (20, 7, 16, 'Tue', 1),
-(21, 1, 16, 'wed', 1);
+(21, 1, 16, 'wed', 1),
+(22, 7, 16, 'wed', 1);
 
 -- --------------------------------------------------------
 
@@ -193,6 +197,30 @@ CREATE TABLE IF NOT EXISTS `course_jihua` (
 INSERT INTO `course_jihua` (`id`, `semester`, `course_id`, `major_jihua_id`) VALUES
 (1, '第一学期', 1, 1),
 (2, '第二学期', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ip`
+--
+
+CREATE TABLE IF NOT EXISTS `ip` (
+  `id` int(11) NOT NULL,
+  `ip` varchar(30) NOT NULL,
+  `row` int(11) NOT NULL,
+  `col` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ip`
+--
+
+INSERT INTO `ip` (`id`, `ip`, `row`, `col`) VALUES
+(1, '10.20.10.144', 6, 4),
+(2, '10.20.10.145', 6, 5),
+(3, '192.168.137.1', 2, 5),
+(4, '192.168.137.52', 2, 4),
+(5, '192.168.137.187', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -317,7 +345,7 @@ ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
   ADD KEY `classtime_id` (`classtime_id`),
-  ADD KEY `mac_id` (`mac_id`);
+  ADD KEY `ip_id` (`ip_id`);
 
 --
 -- Indexes for table `class`
@@ -346,6 +374,12 @@ ALTER TABLE `course_jihua`
   ADD PRIMARY KEY (`id`),
   ADD KEY `course_id` (`course_id`),
   ADD KEY `major_jihua_id` (`major_jihua_id`);
+
+--
+-- Indexes for table `ip`
+--
+ALTER TABLE `ip`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `mac`
@@ -392,7 +426,7 @@ ALTER TABLE `assistant`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `class`
 --
@@ -402,7 +436,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `classtime`
 --
 ALTER TABLE `classtime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `course`
 --
@@ -413,6 +447,11 @@ ALTER TABLE `course`
 --
 ALTER TABLE `course_jihua`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `ip`
+--
+ALTER TABLE `ip`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `mac`
 --
@@ -448,7 +487,7 @@ ALTER TABLE `teacher`
 ALTER TABLE `attendance`
   ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`),
   ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`classtime_id`) REFERENCES `classtime` (`id`),
-  ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`mac_id`) REFERENCES `mac` (`id`);
+  ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`ip_id`) REFERENCES `ip` (`id`);
 
 --
 -- 限制表 `class`

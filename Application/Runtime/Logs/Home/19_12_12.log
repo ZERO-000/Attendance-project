@@ -1,0 +1,28 @@
+[ 2019-12-12T01:07:41+08:00 ] 127.0.0.1 /kqxt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002758s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.014966s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015076s ]
+
+[ 2019-12-12T01:08:09+08:00 ] 127.0.0.1 /kqxt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001497s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.011125s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011234s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000058s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000155s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.075030s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.075086s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.015787s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.015832s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.013879s ]
+INFO: [ app_end ] --END-- [ RunTime:0.013925s ]
+
