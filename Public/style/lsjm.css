@@ -3,10 +3,6 @@ body{
 	margin: 0px;
 	padding: 0px;
 }
-*{
-	margin: 0;
-	padding: 0;
-}
 html,body{
 	width: 100%;
 	height: 100%;
@@ -83,36 +79,6 @@ a{
 }
 
 
-.box{
-	width: 100%;
-	height: 100%;
-	position: relative;
-	display: none;
-	opacity: .5;
-	background-color: #444040;
-}
-.popup{
-	width: 300px;
-	height: 200px;
-	position: absolute;
-	top: 40%;
-	left: 50%;
-	margin-left: -150px;
-	background-color: #fff;
-	border:solid 2px yellow;
-	z-index: 999;
-}
-.popup>p{
-	width: 97%;
-	text-align: right;
-	padding-right: 10px;
-	border-bottom: solid 1px;
-	background-color: yellow;
-	cursor: pointer;
-}
-
-
-
 
 
 #d1{
@@ -125,8 +91,23 @@ a{
 		position: absolute;
 		 display:none;
 		 z-index: 99;
-		 background: #a0a4a7;
+		 background: #c3e4e0;
 	}
+	#d1>p{
+		width: 97%;
+		/* border: solid; */
+		margin:0;
+		padding:0;
+		/* padding-right: 5px; */
+		background-color: #c3e4e0;
+		text-align: right;
+	}
+		#d1>p>span{
+			cursor:pointer;
+		}
+		#d1 button{
+			border:none;
+		}
 	p{
 		line-height: 20px;
 	}

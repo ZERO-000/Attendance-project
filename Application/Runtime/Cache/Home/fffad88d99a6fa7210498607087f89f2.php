@@ -113,17 +113,10 @@
 
 <p id="que">缺席：</p>
 
-<div class="box">
-		<div class="popup">
-				<p><span>X</span></p>
-		</div>
-</div>
 
 
-
-
-<div class="context">
 		<div id="d1" name="dv">
+			<p><span>X</span></p>
 			<form>
 				<div style="float: left;  display: flex; margin-left: 40px;"> <p>评分：<input type="text" style="height:20px;width:240px;"></p></div>
 				<div style="float: left ; display: flex; margin-left: 40px;"><p> <p style="float: left;">评语：</p><textarea style="width:240px;height:100px; float: left;"></textarea></p></div>
@@ -133,7 +126,6 @@
 				height: 50px; background: #a1d4cf;">重置</button>
 			</form>
 		</div>
-</div>
 
 <script src="/kqxt/Public/js/lsjm.js"></script>
 <script>

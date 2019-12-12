@@ -181,4 +181,47 @@ class IndexController extends Controller
 		);
 		$this->ajaxReturn($result,'json');
 	}
+
+
+		public function update_attendance_grade(){
+				$name = I('post.name');
+				$model = M('attendance');
+				$model1 = M('student');
+				$s_id = $model1->where(['s_name' => $name])->field('id')->find();
+				$uag = $model
+				->join('student ON attendance.student_id = student.id')
+				->join('classtime ON attendance.classtime_id = classtime.id')
+				->where(['student_id' => $s_id[id]])->select();
+						$aN = array('AN' =>$uag );
+				$this->ajaxReturn($aN,'json');
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

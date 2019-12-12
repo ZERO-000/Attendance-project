@@ -2,23 +2,7 @@
 //
 
 $(document).ready(function(){
-    $("#tab td").click(function() {
-        console.log(this.innerHTML)
-        $('.d1').css('display','block')
-
-        // divs.style.display="block";
-        // divx.onclick = function(){
-        // divs.style.display="none";}
-        // var column_num = parseInt( $(this).index() ) + 1;
-        // var row_num = parseInt( $(this).parent().index() )+1;
-        //
-        // console.log( "Row_num =" + row_num + "  ,  Rolumn_num ="+ column_num );
-    });
-
-
-    console.log(tab.rows[0].cells[0].innerHTML);
     var que = document.getElementById('que');
-
     $.ajax({
         type:'POST',
         url:'student_list',
@@ -64,17 +48,26 @@ $(document).ready(function(){
 
 
 
-    function show(){
 
-
-    	var divs = document.getElementsByName("dv")
-    	var divx = document.getElementsByName("sad")
-
-      divs[i].style.display="block";
-      divx.onclick = function(){
-        divs[i].style.display="none";
+  $("#tab td").click(function() {
+    console.log(this.innerHTML)
+    var name = this.innerHTML;
+    $.ajax({
+      type:'POST',
+      url:'update_attendance_grade',
+      dataType:'json',
+      data:{"name":name},
+      success:function(d){
+        console.log(d)
       }
-    }
+    })
+    $('#d1').css('display','block')
+  });
+  $('#d1>p>span').click(function(){
+    $('#d1').css('display','none')
+  })
+
+
 
 
 
