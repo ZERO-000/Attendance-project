@@ -8,7 +8,7 @@
 		body{
 			font-family: "Lucida Grande","lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
 			font-size: 12px;
-			background: url(images/3.jpeg) no-repeat;
+			background: url(../images/3.jpeg) no-repeat;
 			height: 100%;
 			width: 100%;
 			overflow: hidden;

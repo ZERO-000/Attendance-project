@@ -37,7 +37,7 @@
 				var btn = document.getElementsByTagName('button')[0];
 				var qiand = document.getElementById('qiand');
 				btn.style.display = 'none';
-				qiand.innerHTML = "签到失败";
+				qiand.innerHTML = "你迟到了";
 
 		}
 		// function timer(){
@@ -81,7 +81,7 @@
 					var student_id = data.data[0].student_id;
 					var classtime_id = data.data[0].classtime_id;
 					var ip = data[3]
-					 qiand = document.getElementById('qiand').innerHTML = ip
+					 // qiand = document.getElementById('qiand').innerHTML = ip
 
 					//console.log(amHour1);
 					console.log(lesson);
@@ -98,8 +98,10 @@
 							   console.log(msg)
 							},'json')
 							alert('签到成功');
+							qiandcg();
 						} else {
-							alert('签到失败' + "..." + '你以迟到' + amHour1 + "小时" + amMinute1 + "分钟")
+							alert( '你以迟到' + amHour1 + "小时" + amMinute1 + "分钟")
+							qiandsb()
 							kaoqin = 2;
 							var data = {
 								'kaoqin':kaoqin,
@@ -126,8 +128,10 @@
 							   console.log(msg)
 							},'json')
 							alert('签到成功')
+							qiandcg()
 						} else {
-							alert('签到失败' + "..." + '你以迟到000000' + amHour2 + "小时" + amMinute2 + "分钟")
+							alert( '你以迟到000000' + amHour2 + "小时" + amMinute2 + "分钟")
+							qiandsb()
 							kaoqin = 2;
 							var data = {
 								'kaoqin':kaoqin,
@@ -154,8 +158,10 @@
 							   console.log(msg)
 							},'json')
 							alert('签到成功')
+							qiandcg()
 						} else {
-							alert('签到失败' + "..." + '你以迟到' + pmHour1 + "小时" + pmMinute1 + "分钟")
+							alert( '你以迟到' + pmHour1 + "小时" + pmMinute1 + "分钟")
+							qiandsb()
 							kaoqin = 2;
 							var data = {
 								'kaoqin':kaoqin,
@@ -184,7 +190,7 @@
 							alert('签到成功')
 							qiandcg();
 						} else {
-							alert('签到失败' + "..." + '你以迟到' + pmHour2 + "小时" + pmMinute2 + "分钟")
+							alert( '你以迟到' + pmHour2 + "小时" + pmMinute2 + "分钟")
 							 kaoqin = 2;
 							 var data = {
 								 'kaoqin':kaoqin,
@@ -195,6 +201,7 @@
 							 $.post("__URL__/kaoqin",data,function (msg) {
 								console.log(msg)
 							 },'json')
+							 qiandsb()
 						}
 					}
 
