@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2019-12-12 01:08:58
+-- Generation Time: 2019-12-12 14:07:33
 -- 服务器版本： 10.1.8-MariaDB
 -- PHP Version: 5.5.30
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `classtime_id` int(11) NOT NULL,
   `ip_id` int(10) DEFAULT NULL,
   `kaoqin` int(11) NOT NULL DEFAULT '0' COMMENT '0未签到，1已签到。2迟到'
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='考勤表';
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COMMENT='考勤表';
 
 --
 -- 转存表中的数据 `attendance`
@@ -93,7 +93,23 @@ INSERT INTO `attendance` (`id`, `student_id`, `classtime_id`, `ip_id`, `kaoqin`)
 (35, 1, 21, NULL, 1),
 (36, 1, 22, 3, 2),
 (37, 2, 22, 4, 2),
-(38, 3, 22, 5, 2);
+(38, 3, 22, 5, 2),
+(39, 1, 23, NULL, 0),
+(40, 1, 24, NULL, 0),
+(41, 1, 25, NULL, 0),
+(42, 1, 26, NULL, 0),
+(43, 2, 23, NULL, 0),
+(44, 2, 24, NULL, 0),
+(45, 2, 25, NULL, 0),
+(46, 2, 26, NULL, 0),
+(47, 3, 23, NULL, 0),
+(48, 3, 24, NULL, 0),
+(49, 3, 25, NULL, 0),
+(50, 3, 26, NULL, 0),
+(51, 4, 23, NULL, 0),
+(52, 4, 24, NULL, 0),
+(53, 4, 25, NULL, 0),
+(54, 4, 26, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `classtime` (
   `weeklyTimes` int(11) NOT NULL,
   `weeks` varchar(20) NOT NULL,
   `course_jihua_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='上课时间表';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='上课时间表';
 
 --
 -- 转存表中的数据 `classtime`
@@ -155,7 +171,11 @@ INSERT INTO `classtime` (`id`, `lesson`, `weeklyTimes`, `weeks`, `course_jihua_i
 (19, 5, 16, 'Tue', 1),
 (20, 7, 16, 'Tue', 1),
 (21, 1, 16, 'wed', 1),
-(22, 7, 16, 'wed', 1);
+(22, 7, 16, 'wed', 1),
+(23, 1, 16, 'Thu', 1),
+(24, 3, 16, 'Thu', 1),
+(25, 5, 16, 'Thu', 1),
+(26, 7, 16, 'Thu', 1);
 
 -- --------------------------------------------------------
 
@@ -426,7 +446,7 @@ ALTER TABLE `assistant`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `class`
 --
@@ -436,7 +456,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `classtime`
 --
 ALTER TABLE `classtime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `course`
 --
