@@ -59,6 +59,13 @@ $(document).ready(function(){
       data:{"name":name},
       success:function(d){
         console.log(d)
+        var classtime_id = '18';
+        var data = {
+          'classtime_id':classtime_id,
+        };
+        $.post("__URL__/update_attendance_grade",data,function (msg) {
+           console.log(msg)
+        },'json')
       }
     })
     $('#d1').css('display','block')

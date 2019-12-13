@@ -34,7 +34,7 @@ class IndexController extends Controller
 		$pmenddate1 = "16:00";
 		$pmstartdate2 = "16:30";
 		$pmenddate2 = "18:00";
-		$his=date('H:i');
+		$his=date('10:00');
 		$amHour1 = floor((strtotime($his)-strtotime($amstartdate1))%86400/3600);
 		$amMinute1 = floor((strtotime($his)-strtotime($amstartdate1))%86400%3600/60);
 		$amHour2 = floor((strtotime($his)-strtotime($amstartdate2))%86400/3600);
@@ -185,13 +185,14 @@ class IndexController extends Controller
 
 		public function update_attendance_grade(){
 				$name = I('post.name');
+				$classtime_id = I('post.classtime_id');
 				$model = M('attendance');
 				$model1 = M('student');
 				$s_id = $model1->where(['s_name' => $name])->field('id')->find();
 				$uag = $model
 				->join('student ON attendance.student_id = student.id')
 				->join('classtime ON attendance.classtime_id = classtime.id')
-				->where(['student_id' => $s_id[id]])->select();
+				->where(['student_id' => $s_id[id],'classtime_id' => $classtime_id])->select();
 						$aN = array('AN' =>$uag );
 				$this->ajaxReturn($aN,'json');
 		}
