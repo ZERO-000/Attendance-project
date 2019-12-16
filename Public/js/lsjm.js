@@ -42,37 +42,78 @@ $(document).ready(function(){
                     que.innerHTML +='&nbsp;&nbsp;' + name + '&nbsp;&nbsp;';
                 }
             }
+
+
+            $("#tab td").click(function() {
+              console.log(data.data[0].classtime_id)
+              console.log(this.innerHTML)
+              var name = this.innerHTML;
+              // console.log('dasdadsa'+grade)
+              var classtime_id = data.data[0].classtime_id;
+
+              var dd = document.getElementById('gradebtn').onclick = function (grade,comment){
+                 var grade = document.getElementsByName('grade')[0].value;
+                 var comment = document.getElementsByName('comment')[0].value;
+                 console.log(comment);
+                 console.log(grade);
+                 return grade;
+                 return comment;
+               }
+               console.log(dd());
+              $.ajax({
+                type:'POST',
+                url:'update_attendance_grade',
+                dataType:'json',
+                data:{
+                  "name":name,
+                  'classtime_id':classtime_id,
+                  'grade':grade,
+                  // 'comment':comment
+                },
+                success:function(d){
+                  console.log(d)
+
+                  }
+
+
+              })
+              $('#d1').css('display','block')
+            });
+
+            $('#d1>p>span').click(function(){
+              $('#d1').css('display','none')
+            })
+
         }
     })
 
 
 
 
-
-  $("#tab td").click(function() {
-    console.log(this.innerHTML)
-    var name = this.innerHTML;
-    $.ajax({
-      type:'POST',
-      url:'update_attendance_grade',
-      dataType:'json',
-      data:{"name":name},
-      success:function(d){
-        console.log(d)
-        var classtime_id = '18';
-        var data = {
-          'classtime_id':classtime_id,
-        };
-        $.post("__URL__/update_attendance_grade",data,function (msg) {
-           console.log(msg)
-        },'json')
-      }
-    })
-    $('#d1').css('display','block')
-  });
-  $('#d1>p>span').click(function(){
-    $('#d1').css('display','none')
-  })
+  //
+  // $("#tab td").click(function() {
+  //   console.log(this.innerHTML)
+  //   var name = this.innerHTML;
+  //   $.ajax({
+  //     type:'POST',
+  //     url:'update_attendance_grade',
+  //     dataType:'json',
+  //     data:{"name":name},
+  //     success:function(d){
+  //       console.log(d)
+  //       var classtime_id = 30;
+  //       data = {'classtime_id':classtime_id};
+  //       $.post("__URL__/update_attendance_grade",data,function (msg) {
+  //          console.log(msg)
+  //       },'json')
+  //
+  //     }
+  //   })
+  //   $('#d1').css('display','block')
+  // });
+  // $('#d1>p>span').click(function(){
+  //   $('#d1').css('display','none')
+  // })
 
 
 
